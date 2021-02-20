@@ -1,0 +1,62 @@
+.promo {
+  max-width: 1280px;
+  padding: 0 70px 75px;
+  background-color: #5c5c5c;
+}
+.promo__container {
+  display: flex;
+  justify-content: space-between;
+  padding: 75px 0 0;
+}
+
+.promo__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.promo__title {
+  max-width: 640px;
+  margin: 0 0 36px;
+
+  color: #fff;
+  font-size: 51px; /* В макете 50px, но тогда слово Веб-разработки некрасиво переносится*/
+  font-weight: 400;
+  line-height: 58px;
+}
+.promo__subtitle {
+  width: 310px;
+  margin: 0;
+
+  color: #fff;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  opacity: .5;
+}
+.promo__img {
+  width: 310px;
+  height: 304px;
+
+  background-image: url('../../images/web-planet.svg');
+}
+.promo__btn {
+  width: 129px;
+  height: 36px;
+  margin-top: 84px;
+
+  background-color: #5C5C5C;
+  border: solid 1px rgba(255,255,255,.6);
+  border-radius: 3px;
+
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  cursor: pointer;
+  transition: linear 0.3s;
+}
+/* @TODO Надо узнать че дожно происходит при клике на ссылку */
+.promo__btn:hover {
+  transform: scale(1.1);
+  border: solid 1px rgba(255,255,255,1);
+}
