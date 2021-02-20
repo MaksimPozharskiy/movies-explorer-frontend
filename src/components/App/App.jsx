@@ -11,7 +11,7 @@ function App() {
           <Header bgColor="dark" textColor="white" />
         </Route>
         <Route path="/movies" exact>
-          <Header bgColor="light"  />
+          <Header bgColor="light" textColor="black"  />
         </Route>
       </Switch>
     </div>

@@ -39,12 +39,44 @@
   line-height: 16px;
   margin: 21px 0;
   padding: 0;
+  cursor: pointer;
+  transition: transform linear .3s;
+}
+
+.header__btn-signin:hover {
+  transform: scale(1.1);
+}
+
+.header__btn-account {
+  width: 26px;
+  height: 30px;
+  border-radius: 4px;
+  border: solid 1px #F9F9F9;
+  background-color: #F9F9F9;
+  background-image: url('../../images/account-btn-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition: linear .4s;
+  transition-property: transform, border;
+}
+
+.header__btn-account:hover {
+  transform: scale(1.3);
+  border: solid 1px black;
 }
 
 .header__sign-text {
+  text-decoration: none;
   margin: 0;
   font-weight: 500;
   line-height: 16px;
+  transition: opacity linear .5s;
+}
+
+.header__sign-text:hover {
+  opacity: 0.6;
+  text-decoration: underline;
 }
 
 .header__sign-text_color_black {
@@ -59,3 +91,32 @@
   color: #fff;
 }
 
+.header__movies {
+  margin-left: 44px;
+
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  text-decoration: none;
+  transition: opacity linear .5s;
+}
+
+.header__movies:hover {
+  opacity: 0.6;
+  text-decoration: underline;
+}
+
+.header__saved-movies {
+  margin-left: 16px;
+
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  text-decoration: none;
+  transition: opacity linear .5s;
+}
+
+.header__saved-movies:hover {
+  opacity: 0.6;
+  text-decoration: underline;
+}
