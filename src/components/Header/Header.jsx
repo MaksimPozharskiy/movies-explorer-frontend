@@ -8,7 +8,7 @@ function Header({ bgColor, textColor }) {
   const text = `${pathname === "/" ? "Регистрация" : "Аккаунт"}`;
 
   return (
-    <div className={`header header_bg-color_${bgColor}`}>
+    <header className={`header header_bg-color_${bgColor}`}>
       <div className="header__container">
         <div className="header__wrapper">
           <img className="header__logo" src={logo} alt="Логотип" />
@@ -41,7 +41,7 @@ function Header({ bgColor, textColor }) {
           )}
         </div>
       </div>
-    </div>
+    </header>
   );
 }
 

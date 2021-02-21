@@ -3,7 +3,7 @@ import "./Promo.css";
 
 function Promo() {
   return (
-    <div className="promo">
+    <section className="promo">
       <div className="promo__container">
         <div className="promo__wrapper">
           <h1 className="promo__title">
@@ -15,7 +15,7 @@ function Promo() {
         </div>
         <div className="promo__img" />
       </div>
-    </div>
+    </section>
   )
 }
 
