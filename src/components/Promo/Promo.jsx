@@ -11,10 +11,10 @@ function Promo() {
             Веб-разработки.
           </h1>
           <p className="promo__subtitle">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
+          <button className="promo__btn" type="button">Узнать больше</button>
         </div>
         <div className="promo__img" />
       </div>
-      <button className="promo__btn" type="button">Узнать больше</button>
     </div>
   )
 }
