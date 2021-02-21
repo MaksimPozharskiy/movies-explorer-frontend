@@ -1,5 +1,6 @@
 import React from "react";
 import "./Promo.css";
+import NavTab from '../NavTab/NavTab';
 
 function Promo() {
   return (
@@ -11,7 +12,7 @@ function Promo() {
             Веб-разработки.
           </h1>
           <p className="promo__subtitle">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
-          <a className="promo__link" href="#about"><button className="promo__btn" type="button">Узнать больше</button></a>
+          <NavTab />
         </div>
         <div className="promo__img" />
       </div>
