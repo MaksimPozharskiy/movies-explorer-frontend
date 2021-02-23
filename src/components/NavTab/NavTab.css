@@ -2,8 +2,8 @@
   width: 129px;
   height: 36px;
 
-  background-color: #5C5C5C;
-  border: solid 1px rgba(255,255,255,.6);
+  background-color: #5c5c5c;
+  border: solid 1px rgba(255, 255, 255, 0.6);
   border-radius: 3px;
 
   color: #fff;
@@ -16,7 +16,7 @@
 
 .promo__btn:hover {
   transform: scale(1.1);
-  border: solid 1px rgba(255,255,255,1);
+  border: solid 1px rgba(255, 255, 255, 1);
 }
 
 .promo__link {

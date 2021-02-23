@@ -32,11 +32,11 @@
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;
-  opacity: .5;
+  opacity: 0.5;
 }
 .promo__img {
   width: 310px;
   height: 304px;
 
-  background-image: url('../../images/web-planet.svg');
+  background-image: url("../../images/web-planet.svg");
 }

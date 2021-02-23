@@ -1,12 +1,12 @@
 .footer {
   padding: 0 70px 0;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
 }
 
 .footer__container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 80px 0 20px; 
+  padding: 80px 0 20px;
 }
 
 .footer__text {
@@ -15,12 +15,12 @@
   padding-bottom: 20px;
   text-align: center;
 
-  color: #A0A0A0;
+  color: #a0a0a0;
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;
 
-  border-bottom: solid 1px #E8E8E8;
+  border-bottom: solid 1px #e8e8e8;
 }
 
 .footer__wrap {
@@ -56,7 +56,7 @@
   font-weight: 400;
   line-height: 16px;
   text-decoration: none;
-  transition: linear .4s;
+  transition: linear 0.4s;
 }
 
 .footer__link:hover {
