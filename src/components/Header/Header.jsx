@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import Navigation from "../Navigation/Navigation";
 import "./Header.css";
 import logo from "../../images/header-logo.svg";
 
@@ -12,18 +13,7 @@ function Header({ bgColor, textColor }) {
       <div className="header__container">
         <div className="header__wrapper">
           <img className="header__logo" src={logo} alt="Логотип" />
-          {pathname === "/" ? (
-            ""
-          ) : (
-            <>
-              <Link className="header__movies" to="/movies">
-                Фильмы
-              </Link>
-              <Link className="header__saved-movies" to="/saved-movies">
-                Сохранённые фильмы
-              </Link>
-            </>
-          )}
+          {pathname === "/" ? ( "" ) : <Navigation />}
         </div>
         <div className="header__wrapper">
           <Link
