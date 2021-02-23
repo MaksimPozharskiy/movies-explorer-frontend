@@ -15,6 +15,12 @@
   position: absolute;
   right: 14px;
   top: 14px;
+  transition: linear .4s;
+  cursor: pointer;
+}
+
+.card__icon:hover {
+  transform: scale(1.2);
 }
 
 .card__description {

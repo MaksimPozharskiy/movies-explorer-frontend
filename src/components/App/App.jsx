@@ -4,6 +4,7 @@ import Header from "../Header/Header";
 import "./App.css";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
+import Footer from "../Footer/Footer";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/movies" exact>
           <Header bgColor="light" textColor="black" />
           <Movies />
+          <Footer />
         </Route>
       </Switch>
     </div>
