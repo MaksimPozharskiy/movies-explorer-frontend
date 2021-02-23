@@ -20,6 +20,11 @@ function App() {
           <Movies />
           <Footer />
         </Route>
+        <Route path="/saved-movies" exact>
+          <Header bgColor="light" textColor="black" />
+          <Movies />
+          <Footer />
+        </Route>
       </Switch>
     </div>
   );
