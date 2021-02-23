@@ -5,6 +5,7 @@ import "./App.css";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import Footer from "../Footer/Footer";
+import Profile from "../Profile/Profile";
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
           <Header bgColor="light" textColor="black" />
           <Movies />
           <Footer />
+        </Route>
+        <Route path="/profile" exact>
+          <Header bgColor="light" textColor="black" />
+          <Profile />
         </Route>
       </Switch>
     </div>
