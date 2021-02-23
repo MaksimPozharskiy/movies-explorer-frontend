@@ -12,7 +12,7 @@ function Header({ bgColor, textColor }) {
     <header className={`header header_bg-color_${bgColor}`}>
       <div className="header__container">
         <div className="header__wrapper">
-          <img className="header__logo" src={logo} alt="Логотип" />
+          <Link to="/"><img className="header__logo" src={logo} alt="Логотип" /></Link>
           {pathname === "/" ? ( "" ) : <Navigation />}
         </div>
         <div className="header__wrapper">
