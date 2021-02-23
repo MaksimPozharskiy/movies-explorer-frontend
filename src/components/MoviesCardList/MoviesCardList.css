@@ -1,16 +1,18 @@
 .movies {
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 0 70px 0;
   background-color: #fff;
 }
 
 .movies__list {
   max-width: 1280px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   padding: 0;
-  display: grid;
   justify-content: center;
+  display: grid;
   grid-template-columns: repeat(auto-fill,360px);
   column-gap: 30px;
   row-gap: 60px;
