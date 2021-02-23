@@ -13,6 +13,7 @@ function App() {
         <Route path="/" exact>
           <Header bgColor="dark" textColor="white" />
           <Main />
+          <Footer />
         </Route>
         <Route path="/movies" exact>
           <Header bgColor="light" textColor="black" />
