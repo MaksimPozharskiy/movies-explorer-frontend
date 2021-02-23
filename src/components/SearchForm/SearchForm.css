@@ -1,14 +1,12 @@
 .search {
-  padding: 80px 70px 50px;
+  padding: 80px 70px 40px;
 }
 
 .search__container {
   max-width: 1280px;
   margin: 0 auto;
-}
-
-.search__form {
-
+  padding-bottom: 40px;
+  border-bottom: solid 1px #E8E8E8;
 }
 
 .search__wrap {
