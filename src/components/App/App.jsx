@@ -6,6 +6,7 @@ import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import Footer from "../Footer/Footer";
 import Profile from "../Profile/Profile";
+import Login from "../Login/Login";
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
         <Route path="/profile" exact>
           <Header bgColor="light" textColor="black" />
           <Profile />
+        </Route>
+        <Route path="/signin" exact>
+          <Login />
         </Route>
       </Switch>
     </div>
