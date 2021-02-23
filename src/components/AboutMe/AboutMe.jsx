@@ -21,8 +21,8 @@ function AboutMe() {
               </p>
             </div>
             <div className="about-me__links">
-              <a className="about-me__link" href="https://www.linkedin.com/in/maksim-pozharskiy-72915a155/">LinkedIn</a>
-              <a className="about-me__link" href="https://github.com/MaksimPozharskiy">GitHub</a>
+              <a className="about-me__link" href="https://www.linkedin.com/in/maksim-pozharskiy-72915a155/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a className="about-me__link" href="https://github.com/MaksimPozharskiy" target="_blank" rel="noreferrer">GitHub</a>
             </div>
           </div>
           <img className="about-me__photo" src={photo} alt="Фото студента" />

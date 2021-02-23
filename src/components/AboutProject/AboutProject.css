@@ -1,5 +1,5 @@
 .about {
-  padding: 0 70px 75px;
+  padding: 0 70px 0;
   background-color: #fff;
 }
 
@@ -49,10 +49,6 @@
   line-height: 20px;
 }
 
-.about__duration-wrap {
-
-}
-
 .about__duration-wrap_back-end {
   width: 20%;
 }
@@ -79,6 +75,7 @@
 }
 
 .about__duration-name {
+  margin: 14px 0 0;
   text-align: center;
   color: #A0A0A0;
   font-size: 14px;
