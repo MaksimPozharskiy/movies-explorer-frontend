@@ -18,7 +18,7 @@ function Header({ bgColor, textColor }) {
         <div className="header__wrapper">
           <Link
             className={`header__sign-text header__sign-text_color_${textColor}`}
-            to={`${pathname === "/" ? "/movies" : "/profile"}`}
+            to={`${pathname === "/" ? "/signup" : "/profile"}`}
           >
             {text}
           </Link>

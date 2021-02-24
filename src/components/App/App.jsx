@@ -7,6 +7,7 @@ import Movies from "../Movies/Movies";
 import Footer from "../Footer/Footer";
 import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
+import Register from "../Register/Register";
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
         </Route>
         <Route path="/signin" exact>
           <Login />
+        </Route>
+        <Route path="/signup" exact>
+          <Register />
         </Route>
       </Switch>
     </div>
