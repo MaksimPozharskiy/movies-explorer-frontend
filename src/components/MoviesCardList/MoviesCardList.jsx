@@ -5,6 +5,7 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 function MoviesCardList() {
   return (
     <section className="movies">
+      <p className="movies__not-found">Ничего не найдено</p>
       <ul className="movies__list">
         <MoviesCard />
         <MoviesCard />
