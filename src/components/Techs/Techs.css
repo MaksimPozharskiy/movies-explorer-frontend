@@ -46,6 +46,7 @@
 }
 
 .techs__list {
+  box-sizing: border-box;
   max-width: 690px;
 
   display: flex;
@@ -88,4 +89,42 @@
 .techs__list-link:visited {
   color: #000;
   text-decoration: none;
+}
+
+@media screen and (max-width: 1280px) {
+  
+}
+
+@media screen and (max-width: 1024px) {
+  .techs {
+    padding: 90px 50px 90px;
+  }
+
+  .techs__title {
+    margin: 80px 0 22px;
+  }
+
+  .techs__subtitle {
+    max-width: 460px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .techs__list {
+    padding: 83px 0 0;
+  }
+
+  .techs__list-item {
+    width: 84px;
+    height: 57px;
+  }
+} 
+/* @TODO Технологии адаптируем */
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 576px) {
+
 }

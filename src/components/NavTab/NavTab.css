@@ -29,3 +29,15 @@
 .promo__link:visited {
   color: #fff;
 }
+
+@media screen and (max-width: 1024px) {
+  .promo__link {
+    margin-top: 92px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .promo__link {
+    margin-top: 80px;
+  }
+}

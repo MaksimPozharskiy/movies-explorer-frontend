@@ -28,7 +28,7 @@ function AboutProject() {
             </p>
           </div>
         </div>
-        <div className="about__wrapper">
+        <div className="about__duration-container">
           <div className="about__duration-wrap about__duration-wrap_back-end">
             <div className="about__duration about__duration_back-end">
               1 неделя
