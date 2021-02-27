@@ -8,6 +8,11 @@ function Header({ bgColor, textColor }) {
   const { pathname } = useLocation();
   const text = `${pathname === "/" ? "Регистрация" : "Аккаунт"}`;
 
+  const [activeBurger, setActiveBurger] = React.useState(false);
+  function handleActiveBurger() {
+    setActiveBurger(!activeBurger);
+  }
+
   return (
     <header className={`header header_bg-color_${bgColor}`}>
       <div className="header__container">
@@ -15,7 +20,7 @@ function Header({ bgColor, textColor }) {
           <Link to="/"><img className="header__logo" src={logo} alt="Логотип" /></Link>
           {pathname === "/" ? ( "" ) : <Navigation />}
         </div>
-        <div className="header__wrapper">
+        <div className={`header__wrapper ${pathname === "/" ? "" : "header__wrapper_burger"}`}>
           <Link
             className={`header__sign-text header__sign-text_color_${textColor}`}
             to={`${pathname === "/" ? "/signup" : "/profile"}`}
@@ -30,6 +35,14 @@ function Header({ bgColor, textColor }) {
             <button className="header__btn-account" type="button" />
           )}
         </div>
+        {pathname === "/" ? '' : (
+          <div className={`header__burger ${activeBurger ? 'header__burger_active' : ''}`} onClick={handleActiveBurger}>
+            <div className="header__burger-line" />
+            <div className="header__burger-line" />
+            <div className="header__burger-line" />
+          </div>
+        )}
+        
       </div>
     </header>
   );
