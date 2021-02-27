@@ -52,3 +52,28 @@
 .portfolio__link:hover .portfolio__icon {
   transform: scale(1.7);
 }
+
+@media screen and (max-width: 1280px) {
+  .portfolio__name {
+    font-size: 28px;
+    line-height: 50px;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .portfolio__title {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0 0 40px;
+  }
+
+  .portfolio__name {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+
+}
