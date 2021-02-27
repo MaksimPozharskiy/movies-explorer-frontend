@@ -104,6 +104,7 @@
   height: 23px;
   display: none;
   cursor: pointer;
+  z-index: 3;
 }
 
 .header__burger-line {
@@ -132,6 +133,62 @@
   transform: rotate(45deg) translate(-8px, -8px) ;
 }
 
+.header__burger-menu-wrap {
+  visibility: hidden;
+  top: 0;
+  right: 0;
+  position: fixed;
+  width: 65%;
+  height: 100vh;
+  background-color: #fff;
+  z-index: 2;
+}
+
+.header__burger-menu-wrap_active {
+  visibility: visible;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.header__burger-nav {
+  margin-top: 160px;
+}
+
+.header__burger-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  row-gap: 28px;
+}
+
+.header__burger-item {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+}
+
+.header__burger-link {
+  color: #000;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.header__burger-link:hover {
+  text-decoration: underline;
+}
+
+.header__wrapper_burger-menu {
+  position: absolute;
+  bottom: 90px;
+  left: 50%;
+}
+/* @TODO адаптив movies */
 /* Media */
 
 @media screen and (max-width: 1280px) {
@@ -177,6 +234,10 @@
   .header__btn-signin {
     width: 54px;
     height: 26px;
+  }
+
+  .header__burger-menu-wrap {
+    width: 100%;
   }
 }
 
