@@ -19,7 +19,7 @@ function Register() {
             }}
         >
           <label htmlFor="name" className="form__label">Имя</label>
-          <input id="name" className="form__input" minLength="2" type="text" />
+          <input required id="name" className="form__input" minLength="2" type="text" />
           <span className='form__input-error'>Текст ошибки</span>
         </Form>
       </div>
