@@ -20,7 +20,7 @@
   line-height: 170px;
 }
 
-.not-text {
+.not-found__text {
   margin: 0;
 
   color: #000;
@@ -44,4 +44,11 @@
 
 .not-found__back:hover {
   transform: scale(1.2);
+}
+
+@media screen and (max-width: 768px) {
+  .not-found__error {
+    font-size: 80px;
+    line-height: 96px;
+  }
 }
