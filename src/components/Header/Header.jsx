@@ -9,6 +9,7 @@ function Header({ bgColor, textColor }) {
   const text = `${pathname === "/" ? "Регистрация" : "Аккаунт"}`;
 
   const [activeBurger, setActiveBurger] = React.useState(false);
+
   function handleActiveBurger() {
     setActiveBurger(!activeBurger);
   }

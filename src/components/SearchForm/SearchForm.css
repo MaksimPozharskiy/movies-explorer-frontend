@@ -12,6 +12,7 @@
 .search__wrap {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   column-gap: 10px;
   margin-bottom: 30px;
 }
@@ -43,3 +44,20 @@
   border: solid 1px #000;
   transform: scale(1.1);
 } 
+
+
+@media screen and (max-width: 1024px) {
+  .search {
+    padding: 80px 30px 80px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 576px) {
+  .search {
+    padding: 80px 14px 80px;
+  }
+}
