@@ -24,6 +24,12 @@
   transform: scale(1.2);
 }
 
+.card__image {
+  width: 360px;
+  height: 200px;
+  
+}
+
 .card__description {
   margin: 14px 14px 0;
   display: flex;
@@ -31,6 +37,7 @@
 }
 
 .card__name {
+  flex-basis: 250px;
   margin: 0;
 
   color: #000;
@@ -40,8 +47,10 @@
 }
 
 .card__duration {
+  box-sizing: border-box;
   margin: 0;
 
+  align-self: flex-start;
   background-color: #F9F9F9;
   border: solid 1px #F9F9F9;
   border-radius: 3px;
