@@ -13,6 +13,7 @@ function Movies() {
   const [searchValue, setSearchValue] = React.useState('');
   const [inputError, setInputError] = React.useState('');
   const [visibilityMoviesList, setVisibilityMoviesList] = React.useState('');
+  const [isPreloaderOpen,  setIsPreloaderOpen] = React.useState('');
 
   // Считаем сколько карточек нужно отрисовать при поиске
   function countInitCards() {
@@ -39,18 +40,22 @@ function Movies() {
   // Получаем фильмов по ключевому слову по клику на Поиск
   function handleSearch(evt) {
     evt.preventDefault();
-
     if (searchValue === '') {
       setInputError('Нужно ввести ключевое слово')
       return;
     }
-
+    // показываем прелоадер, скрываем фильмы (ранее найденные)
+    setIsPreloaderOpen('preloader_active')
+    setVisibilityMoviesList('')
     MoviesApi.getMovies()
       .then(moviesList => {
         localStorage.setItem('moviesList', JSON.stringify(moviesList));
       })
-    filterMoviesFromLS(JSON.parse(localStorage.moviesList))
-    setVisibilityMoviesList('movies_visibility')
+        .then(() => {
+          filterMoviesFromLS(JSON.parse(localStorage.moviesList))
+          setVisibilityMoviesList('movies_visibility')
+          setIsPreloaderOpen('')
+        })
   }
 
   return (
@@ -62,7 +67,7 @@ function Movies() {
         inputError={inputError}
         setInputError={setInputError}
       />
-      <Preloader />
+      <Preloader isPreloaderOpen={isPreloaderOpen} />
       <MoviesCardList 
         movies={movies}
         visibilityMoviesList={visibilityMoviesList}
