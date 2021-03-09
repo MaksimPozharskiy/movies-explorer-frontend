@@ -22,7 +22,6 @@ function MoviesCardList({ movies, visibilityMoviesList, renderedFilms, setRender
     <section className={`movies ${visibilityMoviesList}`}>
       {movies.length > 0 ? '' : <p className="movies__not-found">Ничего не найдено</p>}
       <ul className="movies__list">
-        
         { 
           renderedFilms.map((movie) => (
             <MoviesCard
@@ -30,6 +29,7 @@ function MoviesCardList({ movies, visibilityMoviesList, renderedFilms, setRender
               cardName={movie.nameRU}
               cardDuration={parseDurationMovie(movie.duration)}
               imageLink={movie.image ? `https://api.nomoreparties.co${movie.image.url}` : "https://thumbnailer.mixcloud.com/unsafe/900x900/extaudio/c/e/e/5/95df-f97e-4e8b-a1d5-94f3ceb4f5ea"}
+              trailerLink={movie.trailerLink}
             />
           )) 
         }

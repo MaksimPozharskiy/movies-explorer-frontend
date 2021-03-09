@@ -5,7 +5,7 @@ import moviesIconCard from "../../images/added-card-icon.svg";
 import moviesSavedCardIcon from "../../images/delete-card-icon.svg";
 import saveCardIcon from "../../images/save-card-icon.svg"
 
-function MoviesCard({ cardName, cardDuration, imageLink }) {
+function MoviesCard({ cardName, cardDuration, imageLink, trailerLink }) {
   const { pathname } = useLocation();
   const isAdded = true; // Поменять на false для проверки
   // Если фильм добавлен в избранное 
@@ -15,14 +15,23 @@ function MoviesCard({ cardName, cardDuration, imageLink }) {
 
   return (
     <li className="card">
+
       <div className="card__wrap">
-        <img className="card__image" src={imageLink} alt="Тестовая карточка" />
-        <img className="card__icon" src={cardIcon} alt="Тестовая иконка" />
+        <img className="card__icon" src={cardIcon} alt="icon" />
+        <a
+          className="card__trailer-link"
+          href={trailerLink}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img className="card__image" src={imageLink} alt={cardName} />
+        </a>
       </div>
       <div className="card__description">
         <p className="card__name">{cardName}</p>
         <p className="card__duration">{cardDuration}</p>
       </div>
+
     </li>
   );
 }

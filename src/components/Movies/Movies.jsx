@@ -47,6 +47,7 @@ function Movies() {
     // показываем прелоадер, скрываем фильмы (ранее найденные)
     setIsPreloaderOpen('preloader_active')
     setVisibilityMoviesList('')
+    
     MoviesApi.getMovies()
       .then(moviesList => {
         localStorage.setItem('moviesList', JSON.stringify(moviesList));
