@@ -3,7 +3,15 @@ import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
 
-function MoviesCardList({ movies, visibilityMoviesList, renderedFilms, setRenderedFilms, handleMoreRenderFilms, countInitCards }) {
+function MoviesCardList({ 
+    movies, 
+    visibilityMoviesList, 
+    renderedFilms, setRenderedFilms, 
+    handleMoreRenderFilms, 
+    countInitCards, 
+    addMovie,
+    removeMovie,
+    savedMovies}) {
   React.useEffect(() => {
     // Определяем сколько фильмов нужно отрисовать в зависимости от ширины экрана
     const cards = countInitCards();
@@ -25,11 +33,15 @@ function MoviesCardList({ movies, visibilityMoviesList, renderedFilms, setRender
         { 
           renderedFilms.map((movie) => (
             <MoviesCard
+              movie={movie}
               key={movie.id}
               cardName={movie.nameRU}
               cardDuration={parseDurationMovie(movie.duration)}
               imageLink={movie.image ? `https://api.nomoreparties.co${movie.image.url}` : "https://thumbnailer.mixcloud.com/unsafe/900x900/extaudio/c/e/e/5/95df-f97e-4e8b-a1d5-94f3ceb4f5ea"}
               trailerLink={movie.trailerLink}
+              addMovie={addMovie}
+              removeMovie={removeMovie}
+              savedMovies={savedMovies}
             />
           )) 
         }

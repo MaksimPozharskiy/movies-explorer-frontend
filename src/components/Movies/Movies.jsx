@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import "./Movies.css";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import MoviesApi from "../../utils/MoviesApi";
+import MainApi from "../../utils/MainApi";
 import { definitionSizeScreen, coefficientScreen } from "../../utils/definitionScreen";
 
 function Movies() {
@@ -14,6 +16,17 @@ function Movies() {
   const [inputError, setInputError] = React.useState('');
   const [visibilityMoviesList, setVisibilityMoviesList] = React.useState('');
   const [isPreloaderOpen,  setIsPreloaderOpen] = React.useState('');
+  const [savedMovies, setSavedMovies] = React.useState([]);
+
+  React.useEffect(() => {
+    MainApi.getSavedMovies()
+      .then(savedMoviesData => {
+        if(savedMoviesData) {
+          setSavedMovies(savedMoviesData)
+        }
+      })
+
+    }, []);
 
   // Считаем сколько карточек нужно отрисовать при поиске
   function countInitCards() {
@@ -59,6 +72,24 @@ function Movies() {
         })
   }
 
+  function addMovie(movie) {
+
+    MainApi.addMovie(movie)
+      .then((dataMovie) => {
+        setSavedMovies([dataMovie, ...savedMovies]);
+      })
+  }
+
+  function removeMovie(movieId) {
+
+
+    MainApi.removeMovie(movieId)
+      .then(() => {
+        const newMovies = savedMovies.filter(movie => movie.id !== movieId);
+        setSavedMovies(newMovies);
+      })
+  }
+
   return (
     <>
       <SearchForm
@@ -76,6 +107,9 @@ function Movies() {
         setRenderedFilms={setRenderedFilms}
         handleMoreRenderFilms={handleMoreRenderFilms}
         countInitCards={countInitCards}
+        addMovie={addMovie}
+        removeMovie={removeMovie}
+        savedMovies={savedMovies}
       />
     </>
   );

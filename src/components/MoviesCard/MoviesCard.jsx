@@ -5,19 +5,54 @@ import moviesIconCard from "../../images/added-card-icon.svg";
 import moviesSavedCardIcon from "../../images/delete-card-icon.svg";
 import saveCardIcon from "../../images/save-card-icon.svg"
 
-function MoviesCard({ cardName, cardDuration, imageLink, trailerLink }) {
+function MoviesCard({ 
+    movie,
+    cardName, 
+    cardDuration, 
+    imageLink, 
+    trailerLink, 
+    addMovie,
+    removeMovie,
+    savedMovies }) {
+  const [isAddedCard, setIsAddedCard] = React.useState(false);
+
   const { pathname } = useLocation();
-  const isAdded = true; // Поменять на false для проверки
   // Если фильм добавлен в избранное 
-  const moviesIcon = (isAdded ? moviesIconCard : saveCardIcon)
+  const moviesIcon = (isAddedCard ? moviesIconCard : saveCardIcon)
   // Если на странице общего поиска, то берем иконку определенную на строчке выше, если нет, то иконку удаления
   const cardIcon = (pathname === "/movies" ? moviesIcon : moviesSavedCardIcon)
 
+    function hadleLikeMovie() {
+      if(!isAddedCard) {
+        addMovie(movie)
+        setIsAddedCard(true)
+      } else {
+        const movieItem = savedMovies.filter((savedMovie)=> savedMovie.movieId === movie._id);
+        removeMovie(movieItem[0].data._id)
+        console.log(movieItem[0].data)
+        setIsAddedCard(false)
+      }
+    }
+
+    // function hadleDeleteButton() {
+    //   removeMovie(movie._id);
+    // }
+
+    // React.useEffect(() => {
+    //   if(savedMovies.length > 0) {
+    //     if(!isAddedCard) {
+    //     setIsLiked(savedMovies.some(savedMovie=>
+    //       savedMovie.movieId === movie.id && savedMovie.owner === currentUser._id));}
+    //     else {
+    //       setIsAddedCard(false)
+    //     }
+    //   }
+    // },[]);
   return (
     <li className="card">
 
       <div className="card__wrap">
-        <img className="card__icon" src={cardIcon} alt="icon" />
+        <img className="card__icon" src={cardIcon} alt="icon" onClick={hadleLikeMovie} />
         <a
           className="card__trailer-link"
           href={trailerLink}
