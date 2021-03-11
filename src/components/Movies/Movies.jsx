@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import "./Movies.css";
+import { useLocation } from "react-router-dom";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
@@ -9,6 +10,7 @@ import MainApi from "../../utils/MainApi";
 import { definitionSizeScreen, coefficientScreen } from "../../utils/definitionScreen";
 
 function Movies() {
+  const { pathname } = useLocation();
   const [movies, setMoviesList] = React.useState([]); // Стейт с найденными по ключевому слову фильмами
   const [renderedFilms, setRenderedFilms] = React.useState([]); // Отрисованные карточки
   const [countClickMoreFilms, setCountClickMoreFilms] = React.useState(1); // Счетчик нажатий кнопки "еще"
@@ -17,14 +19,20 @@ function Movies() {
   const [visibilityMoviesList, setVisibilityMoviesList] = React.useState('');
   const [isPreloaderOpen,  setIsPreloaderOpen] = React.useState('');
   const [savedMovies, setSavedMovies] = React.useState([]);
+  
 
   React.useEffect(() => {
+
     MainApi.getSavedMovies()
       .then(savedMoviesData => {
         if(savedMoviesData) {
           setSavedMovies(savedMoviesData)
         }
       })
+
+      if (pathname === "/saved-movies") {
+        setVisibilityMoviesList('movies_visibility');
+      }
 
     }, []);
 
@@ -60,8 +68,8 @@ function Movies() {
     // показываем прелоадер, скрываем фильмы (ранее найденные)
     setIsPreloaderOpen('preloader_active')
     setVisibilityMoviesList('')
-    
-    MoviesApi.getMovies()
+    if (pathname === "/movies") {
+      MoviesApi.getMovies()
       .then(moviesList => {
         localStorage.setItem('moviesList', JSON.stringify(moviesList));
       })
@@ -70,18 +78,24 @@ function Movies() {
           setVisibilityMoviesList('movies_visibility')
           setIsPreloaderOpen('')
         })
+    } else {
+      setSavedMovies(savedMovies.filter(movie => movie.nameRU.includes(searchValue)))
+      setVisibilityMoviesList('movies_visibility')
+      setIsPreloaderOpen('')
+      
+    }
+
   }
 
   function addMovie(movie) {
 
     MainApi.addMovie(movie)
       .then((dataMovie) => {
-        setSavedMovies([dataMovie, ...savedMovies]);
+        setSavedMovies([dataMovie.data, ...savedMovies]);
       })
   }
 
   function removeMovie(movieId) {
-
 
     MainApi.removeMovie(movieId)
       .then(() => {
