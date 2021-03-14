@@ -4,6 +4,33 @@ class MainApi {
     this._headers = headers;
   }
 
+  getInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers,
+    })
+      .then(response => this._checkRequestResult(response));
+  }
+
+  setInfo(name, email) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        email,
+      })
+    })
+    .then(response => this._checkRequestResult(response));
+  }
+
+  logout() {
+    return fetch(`${this._baseUrl}/signout `, {
+      method: 'POST',
+      headers: this._headers,
+    })
+    .then(response => this._checkRequestResult(response));
+  }
+
   register(email, password, name) {
     return fetch(`${this._baseUrl}/signup`, {
       method: 'POST',
@@ -83,6 +110,8 @@ class MainApi {
   errorHandler(error) {
     console.log(error);
   }
+
+
 }
 
 const mainApi = new MainApi({

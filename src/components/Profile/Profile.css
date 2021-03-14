@@ -82,6 +82,10 @@
   line-height: 15px;
 }
 
+.profile__btn-edit:disabled {
+  opacity: .4;
+}
+
 @media screen and (max-width: 576px) {
   .profile__container {
     max-width: 270px;
