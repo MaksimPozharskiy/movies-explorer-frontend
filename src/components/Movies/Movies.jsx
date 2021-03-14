@@ -101,7 +101,7 @@ function Movies({isLogin}) {
 
     MainApi.removeMovie(movieId)
       .then(() => {
-        const newMovies = savedMovies.filter(movie => movie.id !== movieId);
+        const newMovies = savedMovies.filter(movie => movie._id !== movieId);
         setSavedMovies(newMovies);
       })
   }
