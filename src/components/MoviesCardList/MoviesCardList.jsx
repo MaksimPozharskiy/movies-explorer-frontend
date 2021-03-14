@@ -33,7 +33,7 @@ function MoviesCardList({
       setVisibilityNotFound('')
     }
 
-  }, [movies, setRenderedFilms])
+  }, [movies, setRenderedFilms, pathname])
 
   // Расчёт длительности фильма
     function parseDurationMovie(durationMinutes) {

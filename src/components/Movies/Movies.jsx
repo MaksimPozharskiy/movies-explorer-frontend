@@ -7,9 +7,11 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import MoviesApi from "../../utils/MoviesApi";
 import MainApi from "../../utils/MainApi";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 import { definitionSizeScreen, coefficientScreen } from "../../utils/definitionScreen";
 
-function Movies() {
+function Movies({isLogin}) {
   const { pathname } = useLocation();
   const [movies, setMoviesList] = React.useState([]); // Стейт с найденными по ключевому слову фильмами
   const [renderedFilms, setRenderedFilms] = React.useState([]); // Отрисованные карточки
@@ -106,6 +108,7 @@ function Movies() {
 
   return (
     <>
+      <Header bgColor="light" textColor="black" isLogin={isLogin} />
       <SearchForm
         onSubmit={handleSearch}
         searchValue={searchValue}
@@ -125,6 +128,7 @@ function Movies() {
         removeMovie={removeMovie}
         savedMovies={savedMovies}
       />
+      <Footer />
     </>
   );
 }
