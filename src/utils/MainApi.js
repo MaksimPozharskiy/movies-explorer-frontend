@@ -115,12 +115,10 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  baseUrl: 'http://localhost:3001',
+  baseUrl: 'https//api.mpozharskiy-movies.students.nomoredomains.rocks',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': `${localStorage.getItem('jwt')}`
-    // 'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDRlNTE5YTE3ZmMyZDFiOGM5ZDVlY2YiLCJpYXQiOjE2MTU3NDU0NDUsImV4cCI6MTYxNjM1MDI0NX0.pCgPa_RF6osB31f2PKliZk5tULY8rMTIWbjUyQJDGdU`
-    
   }
 }); 
 
