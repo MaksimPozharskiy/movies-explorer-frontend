@@ -30,6 +30,8 @@ function Movies({isLogin}) {
         if(savedMoviesData) {
           setSavedMovies(savedMoviesData)
         }
+      }).catch(err => {
+        console.log(err)
       })
 
       if (pathname === "/saved-movies") {
@@ -79,6 +81,8 @@ function Movies({isLogin}) {
           filterMoviesFromLS(JSON.parse(localStorage.moviesList))
           setVisibilityMoviesList('movies_visibility')
           setIsPreloaderOpen('')
+        }).catch(err => {
+          console.log(err)
         })
     } else {
       setSavedMovies(savedMovies.filter(movie => movie.nameRU.includes(searchValue)))
@@ -94,6 +98,8 @@ function Movies({isLogin}) {
     MainApi.addMovie(movie)
       .then((dataMovie) => {
         setSavedMovies([dataMovie.data, ...savedMovies]);
+      }).catch(err => {
+        console.log(err)
       })
   }
 
@@ -103,6 +109,8 @@ function Movies({isLogin}) {
       .then(() => {
         const newMovies = savedMovies.filter(movie => movie._id !== movieId);
         setSavedMovies(newMovies);
+      }).catch(err => {
+        console.log(err)
       })
   }
 

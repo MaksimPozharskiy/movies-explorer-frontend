@@ -32,6 +32,10 @@ function App() {
           setIsLogin(true);
         }
       })
+      .catch(err => {
+        console.log(err)
+      })
+      
     }
   };
 
@@ -46,6 +50,8 @@ function App() {
           if(userInfo) {
             setCurrentUser(userInfo.data);
           }
+        }).catch(err => {
+          console.log(err)
         })
     }
   }, []);
