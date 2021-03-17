@@ -19,6 +19,8 @@ function App() {
   const [registrationError, setRegisteredError] = React.useState(false)
   const [loginError, setLoginError] = React.useState(false)
   const [isLogin, setIsLogin] = React.useState(false)
+  const [isEditError, setIsEditError] = React.useState(false);
+  const [isEditDone, setIsEditDone] = React.useState(false);
 
   function isLoggedInCheck() {
     const jwt = localStorage.getItem('jwt');
@@ -87,6 +89,14 @@ function App() {
     MainApi.setInfo(name, email)
       .then((info) => {
       setCurrentUser(info);
+      setIsEditDone(true);
+      setIsEditError(false);
+      setTimeout(()=>{
+        setIsEditDone(false);
+      }, 4000);
+    })
+    .catch(() => {
+      setIsEditError(true);
     })
   };
 
@@ -126,6 +136,8 @@ function App() {
             editProfile={editProfile} 
             isLogin={isLogin}
             currentUser={currentUser}
+            isEditError={isEditError}
+            isEditDone={isEditDone}
           />
 )}
           <Route path="/signin" exact>
