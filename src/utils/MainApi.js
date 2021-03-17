@@ -115,7 +115,8 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  baseUrl: 'https://api.mpozharskiy-movies.students.nomoredomains.rocks',
+  // baseUrl: 'https://api.mpozharskiy-movies.students.nomoredomains.rocks',
+  baseUrl: 'http://localhost:3001',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': `${localStorage.getItem('jwt')}`
