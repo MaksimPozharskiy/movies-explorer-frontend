@@ -10,6 +10,7 @@ import MainApi from "../../utils/MainApi";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { definitionSizeScreen, coefficientScreen } from "../../utils/definitionScreen";
+import shortMoviesHandle from "../../helpers/shortMovies";
 
 function Movies({isLogin}) {
   const { pathname } = useLocation();
@@ -22,6 +23,7 @@ function Movies({isLogin}) {
   const [isPreloaderOpen,  setIsPreloaderOpen] = React.useState('');
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [visibilityBtnYet, setVisibilityBtnYet] = React.useState('movies__button_hidden')
+  const [isShortFilms, setIsShortFilms] = React.useState(false);
   
 
   React.useEffect(() => {
@@ -41,11 +43,24 @@ function Movies({isLogin}) {
       
     }, []);
 
-  React.useEffect(() => {
-    if (movies.length === renderedFilms.length) {
-      setVisibilityBtnYet('movies__button_hidden');
+
+    function filterMovies(films) {
+      if (isShortFilms) {
+        return shortMoviesHandle(films);
+      }
+      return films.filter((movie) => movie.duration >= 40)
     }
-  }, [movies, renderedFilms])
+
+    const filteredMovies = React.useMemo(() => filterMovies(movies), [isShortFilms, movies])
+    const filteredRenderedMovies = React.useMemo(() => filterMovies(renderedFilms), [isShortFilms, renderedFilms])
+    const filteredSavedMovies = React.useMemo(() => filterMovies(savedMovies), [isShortFilms, savedMovies])  
+
+  React.useEffect(() => {
+    if (filteredMovies.length >= filteredRenderedMovies.length) {
+      setVisibilityBtnYet('movies__button_hidden');
+      
+    }
+  }, [filteredMovies, filteredRenderedMovies])
 
   // Считаем сколько карточек нужно отрисовать при поиске
   function countInitCards() {
@@ -62,10 +77,13 @@ function Movies({isLogin}) {
     const cards = countInitCards();
     
     // Отрисовываем текущие + новые(в зависимости от ширины экрана)
-    setRenderedFilms(movies.slice(0, cards + countClickMoreFilms * coefficientScreen()))
+    setRenderedFilms(filteredMovies.slice(0, cards + countClickMoreFilms * coefficientScreen()))
     setCountClickMoreFilms(countClickMoreFilms+1)
     
   }
+
+
+
 
   // Фильруем фильмы по ключевому слову
   function filterMoviesFromLS(moviesList) {
@@ -109,8 +127,9 @@ function Movies({isLogin}) {
 
   }
 
-  function addMovie(movie) {
+  
 
+  function addMovie(movie) {
     MainApi.addMovie(movie)
       .then((dataMovie) => {
         setSavedMovies([dataMovie.data, ...savedMovies]);
@@ -120,7 +139,6 @@ function Movies({isLogin}) {
   }
 
   function removeMovie(movieId) {
-
     MainApi.removeMovie(movieId)
       .then(() => {
         const newMovies = savedMovies.filter(movie => movie._id !== movieId);
@@ -139,21 +157,25 @@ function Movies({isLogin}) {
         setSearchValue={setSearchValue}
         inputError={inputError}
         setInputError={setInputError}
+        isShortFilms={isShortFilms}
+        setIsShortFilms={setIsShortFilms}
       />
       <Preloader isPreloaderOpen={isPreloaderOpen} />
       <MoviesCardList 
-        movies={movies}
+        movies={filteredMovies}
         visibilityMoviesList={visibilityMoviesList}
-        renderedFilms={renderedFilms}
+        renderedFilms={filteredRenderedMovies}
         setRenderedFilms={setRenderedFilms}
         handleMoreRenderFilms={handleMoreRenderFilms}
         countInitCards={countInitCards}
         addMovie={addMovie}
         removeMovie={removeMovie}
-        savedMovies={savedMovies}
+        savedMovies={filteredSavedMovies}
         setVisibilityMoviesList={setVisibilityMoviesList}
         visibilityBtnYet={visibilityBtnYet}
         setVisibilityBtnYet={setVisibilityBtnYet}
+        shortMoviesHandle={shortMoviesHandle}
+        isShortFilms={isShortFilms}
       />
       <Footer />
     </>

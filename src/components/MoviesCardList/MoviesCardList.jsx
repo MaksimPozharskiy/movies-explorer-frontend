@@ -17,7 +17,9 @@ function MoviesCardList({
     savedMovies,
     setVisibilityMoviesList,
     visibilityBtnYet,
-    setVisibilityBtnYet
+    setVisibilityBtnYet,
+    shortMoviesHandle,
+    isShortFilms
   }) {
   const { pathname } = useLocation();
   
@@ -38,7 +40,11 @@ function MoviesCardList({
       setVisibilityMoviesList('movies_visibility');
 
     }
+
     setRenderedFilms(JSON.parse(localStorage.getItem('foundFilms')).slice(0, cards));
+    console.log(JSON.parse(localStorage.getItem('foundFilms')).slice(0, cards))
+
+    
 
   }, [movies, setRenderedFilms, pathname])
 
@@ -49,7 +55,8 @@ function MoviesCardList({
     const durationHours = `${hours}ч ${minutes}м`
     return durationHours;
   }
-  
+
+
   return (
     <section className={`movies ${visibilityMoviesList}`}>
       {pathname === "/movies" 
