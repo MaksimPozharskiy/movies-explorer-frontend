@@ -34,7 +34,6 @@
 }
 
 .form__input-error {
-  display: none;
   color: #EE3465;
   font-size: 10px;
   font-weight: 400;
@@ -61,6 +60,10 @@
 
 .form__button:hover {
   transform: scale(1.1);
+}
+
+.form__button:disabled {
+  opacity: .5;
 }
 
 .form__promt {

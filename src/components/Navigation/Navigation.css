@@ -34,6 +34,10 @@
   transition: opacity linear 0.5s;
 }
 
+.navigation__movies_color_white {
+  color:#fff;
+}
+
 .navigation__saved-movies:hover {
   opacity: 0.6;
   text-decoration: underline;
