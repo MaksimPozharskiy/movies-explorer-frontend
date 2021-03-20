@@ -105,19 +105,24 @@ function Movies({isLogin}) {
     // показываем прелоадер, скрываем фильмы (ранее найденные)
     setIsPreloaderOpen('preloader_active')
     setVisibilityMoviesList('')
-    if (pathname === "/movies") {
+    if (pathname === "/movies") { 
       // Если в localStorage нет фильмов, запросить их
       if (!localStorage.getItem('moviesList')) {
         MoviesApi.getMovies()
           .then(moviesList => {
             localStorage.setItem('moviesList', JSON.stringify(moviesList));
+            filterMoviesFromLS(JSON.parse(localStorage.moviesList))
+            setIsPreloaderOpen('')
+            setVisibilityMoviesList('movies_visibility')
+            setVisibilityBtnYet('');
           }).catch(err => console.log(err));
-      }
+          return;
+        }
       
-      filterMoviesFromLS(JSON.parse(localStorage.moviesList))
+      filterMoviesFromLS(localStorage.getItem('moviesList') ? JSON.parse(localStorage.moviesList) : [])
+      setIsPreloaderOpen('')
       setVisibilityMoviesList('movies_visibility')
       setVisibilityBtnYet('');
-      setIsPreloaderOpen('')
       
     } else {
       setSavedMovies(savedMovies.filter(movie => movie.nameRU.includes(searchValue)))

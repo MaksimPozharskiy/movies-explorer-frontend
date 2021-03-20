@@ -35,16 +35,15 @@ function MoviesCardList({
     } else {
       setVisibilityNotFound('')
     }
-
-    if (JSON.parse(localStorage.getItem('foundFilms')).length > 0) {
+    
+    if (localStorage.getItem('foundFilms') && JSON.parse(localStorage.getItem('foundFilms')).length > 0) {
       setVisibilityMoviesList('movies_visibility');
 
     }
 
-    setRenderedFilms(JSON.parse(localStorage.getItem('foundFilms')).slice(0, cards));
-    console.log(JSON.parse(localStorage.getItem('foundFilms')).slice(0, cards))
-
-    
+      if (localStorage.getItem('foundFilms')) {
+        setRenderedFilms(JSON.parse(localStorage.getItem('foundFilms')).slice(0, cards));
+      }
 
   }, [movies, setRenderedFilms, pathname])
 
