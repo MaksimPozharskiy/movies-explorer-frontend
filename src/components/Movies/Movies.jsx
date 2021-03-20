@@ -21,6 +21,7 @@ function Movies({isLogin}) {
   const [visibilityMoviesList, setVisibilityMoviesList] = React.useState('');
   const [isPreloaderOpen,  setIsPreloaderOpen] = React.useState('');
   const [savedMovies, setSavedMovies] = React.useState([]);
+  const [visibilityBtnYet, setVisibilityBtnYet] = React.useState('movies__button_hidden')
   
 
   React.useEffect(() => {
@@ -37,8 +38,14 @@ function Movies({isLogin}) {
       if (pathname === "/saved-movies") {
         setVisibilityMoviesList('movies_visibility');
       }
-
+      
     }, []);
+
+  React.useEffect(() => {
+    if (movies.length === renderedFilms.length) {
+      setVisibilityBtnYet('movies__button_hidden');
+    }
+  }, [movies, renderedFilms])
 
   // Считаем сколько карточек нужно отрисовать при поиске
   function countInitCards() {
@@ -53,17 +60,25 @@ function Movies({isLogin}) {
   // Добавляем фильмы по клику на кнопку "Ещё"
   function handleMoreRenderFilms() {
     const cards = countInitCards();
+    
     // Отрисовываем текущие + новые(в зависимости от ширины экрана)
     setRenderedFilms(movies.slice(0, cards + countClickMoreFilms * coefficientScreen()))
     setCountClickMoreFilms(countClickMoreFilms+1)
+    
   }
 
   // Фильруем фильмы по ключевому слову
   function filterMoviesFromLS(moviesList) {
-    setMoviesList(moviesList.filter(movie => movie.nameRU.includes(searchValue)))
+    const films = moviesList.filter(movie => movie.nameRU.includes(searchValue))
+
+    setMoviesList(()=>{
+      localStorage.setItem('foundFilms', JSON.stringify(films));
+      return films;
+    });
   }
   // Получаем фильмов по ключевому слову по клику на Поиск
   function handleSearch(evt) {
+
     evt.preventDefault();
     if (searchValue === '') {
       setInputError('Нужно ввести ключевое слово')
@@ -73,22 +88,23 @@ function Movies({isLogin}) {
     setIsPreloaderOpen('preloader_active')
     setVisibilityMoviesList('')
     if (pathname === "/movies") {
-      MoviesApi.getMovies()
-      .then(moviesList => {
-        localStorage.setItem('moviesList', JSON.stringify(moviesList));
-      })
-        .then(() => {
-          filterMoviesFromLS(JSON.parse(localStorage.moviesList))
-          setVisibilityMoviesList('movies_visibility')
-          setIsPreloaderOpen('')
-        }).catch(err => {
-          console.log(err)
-        })
+      // Если в localStorage нет фильмов, запросить их
+      if (!localStorage.getItem('moviesList')) {
+        MoviesApi.getMovies()
+          .then(moviesList => {
+            localStorage.setItem('moviesList', JSON.stringify(moviesList));
+          }).catch(err => console.log(err));
+      }
+      
+      filterMoviesFromLS(JSON.parse(localStorage.moviesList))
+      setVisibilityMoviesList('movies_visibility')
+      setVisibilityBtnYet('');
+      setIsPreloaderOpen('')
+      
     } else {
       setSavedMovies(savedMovies.filter(movie => movie.nameRU.includes(searchValue)))
       setVisibilityMoviesList('movies_visibility')
       setIsPreloaderOpen('')
-      
     }
 
   }
@@ -135,6 +151,9 @@ function Movies({isLogin}) {
         addMovie={addMovie}
         removeMovie={removeMovie}
         savedMovies={savedMovies}
+        setVisibilityMoviesList={setVisibilityMoviesList}
+        visibilityBtnYet={visibilityBtnYet}
+        setVisibilityBtnYet={setVisibilityBtnYet}
       />
       <Footer />
     </>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-nested-ternary */
 import React from "react";
 import "./MoviesCardList.css";
@@ -13,25 +14,31 @@ function MoviesCardList({
     countInitCards, 
     addMovie,
     removeMovie,
-    savedMovies}) {
+    savedMovies,
+    setVisibilityMoviesList,
+    visibilityBtnYet,
+    setVisibilityBtnYet
+  }) {
   const { pathname } = useLocation();
-  const [visibilityBtnYet, setVisibilityBtnYet] = React.useState('')
+  
   const [visibilityNotFound, setVisibilityNotFound] = React.useState('')
   
   React.useEffect(() => {
     // Определяем сколько фильмов нужно отрисовать в зависимости от ширины экрана
     const cards = countInitCards();
     
-    setRenderedFilms(movies.slice(0, cards));
-    
-
     if (pathname === "/saved-movies") {
       setVisibilityBtnYet('movies__button_hidden');
       setVisibilityNotFound('movies__button_hidden')
     } else {
-      setVisibilityBtnYet('');
       setVisibilityNotFound('')
     }
+
+    if (JSON.parse(localStorage.getItem('foundFilms')).length > 0) {
+      setVisibilityMoviesList('movies_visibility');
+
+    }
+    setRenderedFilms(JSON.parse(localStorage.getItem('foundFilms')).slice(0, cards));
 
   }, [movies, setRenderedFilms, pathname])
 
@@ -42,15 +49,14 @@ function MoviesCardList({
     const durationHours = `${hours}ч ${minutes}м`
     return durationHours;
   }
-
+  
   return (
     <section className={`movies ${visibilityMoviesList}`}>
       {pathname === "/movies" 
         ? 
-        (movies.length > 0 ? '' : <p className={`movies__not-found ${visibilityNotFound}`}>Ничего не найдено</p>)
+        (renderedFilms.length > 0 ? '' : <p className={`movies__not-found ${visibilityNotFound}`}>Ничего не найдено</p>)
         :
         (savedMovies.length > 0 ? '' : <p className={`movies__not-found ${visibilityNotFound}`}>Ничего не найдено</p>)}
-      {/* {movies.length > 0 ? '' : <p className={`movies__not-found ${visibilityNotFound}`}>Ничего не найдено</p>} */}
       <ul className="movies__list">
         {pathname === "/movies" ? 
         renderedFilms.map((movie) => (
